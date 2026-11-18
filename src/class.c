@@ -367,10 +367,10 @@ int mrbc_instance_setiv(mrbc_value *target, mrbc_sym sym_id, mrbc_value *v)
 {
   mrbc_kv_handle *kvh;
 
-  assert(mrbc_type(*target) == MRBC_TT_CLASS ||
+  assert(IS_CLASS_OR_MODULE(*target) ||
 	 mrbc_type(*target) == MRBC_TT_OBJECT);
 
-  if( mrbc_type(*target) == MRBC_TT_CLASS ) {
+  if( IS_CLASS_OR_MODULE(*target) ) {
     if( target->cls->flag_builtin ) return E_NOTIMP_ERROR;
     kvh = &target->cls->ivar;
   } else {
@@ -395,10 +395,10 @@ mrbc_value mrbc_instance_getiv(mrbc_value *target, mrbc_sym sym_id)
 {
   mrbc_kv_handle *kvh;
 
-  assert(mrbc_type(*target) == MRBC_TT_CLASS ||
+  assert(IS_CLASS_OR_MODULE(*target) ||
 	 mrbc_type(*target) == MRBC_TT_OBJECT);
 
-  if( mrbc_type(*target) == MRBC_TT_CLASS ) {
+  if( IS_CLASS_OR_MODULE(*target) ) {
     if( target->cls->flag_builtin ) return mrbc_nil_value();
     kvh = &target->cls->ivar;
   } else {
